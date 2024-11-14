@@ -1,0 +1,26 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting App</title>
+</head>
+<body>
+    <h1>Enter your name to get a greeting:</h1>
+    <form id="greetForm">
+        <input type="text" id="nameInput" placeholder="Enter your name" required>
+        <button type="button" onclick="fetchGreeting()">Submit</button>
+    </form>
+    <p id="greetingMessage"></p>
+
+    <script>
+        async function fetchGreeting() {
+            const name = document.getElementById("nameInput").value;
+            const response = await fetch(`/greet/${name}`);
+            const result = await response.json();
+            document.getElementById("greetingMessage").textContent = result.message;
+        }
+    </script>
+</body>
+</html>
